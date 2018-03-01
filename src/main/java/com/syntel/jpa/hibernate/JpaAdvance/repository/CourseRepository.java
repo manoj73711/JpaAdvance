@@ -34,9 +34,12 @@ public class CourseRepository {
 	}
 	
 	public void playWithEntityManager(){
-		Course course =new Course("Hello Maple");
-		em.persist(course);
-		course.setName("Hello Maple?? Whats this ?");
+		Course course1 =new Course("Hello Maple");
+		em.persist(course1);
+		
+		Course course2=findById(10001L);
+		course2.setName("JPA in 50 Steps");
+		
 	}
 
 }
