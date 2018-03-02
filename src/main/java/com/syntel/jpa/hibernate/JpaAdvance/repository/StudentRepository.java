@@ -2,11 +2,13 @@ package com.syntel.jpa.hibernate.JpaAdvance.repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.syntel.jpa.hibernate.JpaAdvance.entity.Course;
 import com.syntel.jpa.hibernate.JpaAdvance.entity.Passport;
 import com.syntel.jpa.hibernate.JpaAdvance.entity.Student;
 
@@ -56,6 +58,27 @@ public class StudentRepository {
 		//Database operation 4 - update student
 		student.setName("Nielsen Dan");	
 		
+	}
+
+	
+	public void insertHardCodedStudentAndCourse() {
+		Student student =new Student("Jack");
+		Course course=new Course("MicroServices in 100 steps");
+		em.persist(student);
+		em.persist(course);
+		student.addCourse(course);
+		course.addStudent(student);
+		em.persist(student);
+	}
+	
+	
+	public void insertStudentAndCourse(Student student, Course course) {
+		
+		em.persist(student);
+		em.persist(course);
+		student.addCourse(course);
+		course.addStudent(student);
+		em.persist(student);
 	}
 
 }

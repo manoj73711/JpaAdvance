@@ -2,6 +2,10 @@ package com.syntel.jpa.hibernate.JpaAdvance.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,6 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.syntel.jpa.hibernate.JpaAdvance.JpaAdvanceApplication;
 import com.syntel.jpa.hibernate.JpaAdvance.entity.Course;
+import com.syntel.jpa.hibernate.JpaAdvance.entity.Review;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = JpaAdvanceApplication.class)
@@ -21,6 +26,9 @@ public class CourseRepositoryTest {
 
 	@Autowired
 	CourseRepository repository;
+	
+	@Autowired
+	EntityManager em;
 
 	@Test
 	public void findById_basic() {
@@ -57,4 +65,17 @@ public class CourseRepositoryTest {
 	public void playWithEntityManager_basic() {
 		
 	}
+	@Test
+	//@Transactional
+	public void retrieveReviewsForCourse() {
+		Course course=repository.findById(10001L);
+		logger.info("{}",course.getReviews());
+		}
+	@Test
+	public void retrieveCourseForreview() {
+		Review review=em.find(Review.class,50001L);
+		logger.info("{}",review.getCourse());
+		
+	}
+	
 }

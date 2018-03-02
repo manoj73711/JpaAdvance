@@ -43,6 +43,15 @@ public class StudentRepositoryTest {
 		logger.info("Passport Student {}",passport.getStudent());
 	}
 	
+	@Test
+	@Transactional
+	public void retrieveStudentAndCourses() {
+		Student student=em.find(Student.class, 20001L);
+		logger.info("Srudent -> {}",student);
+		logger.info("Student_Courses -> {}",student.getCourses());
+	}
+
+	
 	//session& Session Factory
 	//Entity Manager & Persistence Context
 	//Transaction
