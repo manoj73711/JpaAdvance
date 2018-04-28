@@ -35,6 +35,18 @@ public class CourseRepositoryTest {
 		Course course = repository.findById(10001L);
 		assertEquals("JPA in 50 Steps", course.getName());
 	}
+	
+	@Test
+	@org.springframework.transaction.annotation.Transactional
+	public void findById_firstLevelCacheDemo() {
+		Course course = repository.findById(10001L);
+		logger.info("First course retrive {}",course);
+		
+		//The below line is the first level cache
+		Course course2 = repository.findById(10001L);
+		logger.info("First course retrive again {}",course2);
+		assertEquals("JPA in 50 Steps", course.getName());
+	}
 
 	@Test
 	@DirtiesContext

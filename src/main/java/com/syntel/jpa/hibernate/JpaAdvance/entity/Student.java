@@ -32,6 +32,7 @@ public class Student {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	private Passport passport;
+	
 
 	@ManyToMany
 	//joinColumn - STUDENT_ID

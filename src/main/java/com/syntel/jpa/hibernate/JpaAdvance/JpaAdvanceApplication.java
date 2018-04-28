@@ -1,5 +1,6 @@
 package com.syntel.jpa.hibernate.JpaAdvance;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.syntel.jpa.hibernate.JpaAdvance.entity.Course;
+import com.syntel.jpa.hibernate.JpaAdvance.entity.FullTimEmployee;
+import com.syntel.jpa.hibernate.JpaAdvance.entity.PartTimeEmployee;
 import com.syntel.jpa.hibernate.JpaAdvance.entity.Review;
 import com.syntel.jpa.hibernate.JpaAdvance.entity.Student;
 import com.syntel.jpa.hibernate.JpaAdvance.repository.CourseRepository;
+import com.syntel.jpa.hibernate.JpaAdvance.repository.EmployeeRepository;
 import com.syntel.jpa.hibernate.JpaAdvance.repository.StudentRepository;
 
 @SpringBootApplication
@@ -25,6 +29,9 @@ public class JpaAdvanceApplication implements CommandLineRunner {
 	
 	@Autowired
 	public StudentRepository studentrepository;
+	
+	@Autowired
+	public EmployeeRepository  employeeRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(JpaAdvanceApplication.class, args);
 	}
@@ -32,8 +39,21 @@ public class JpaAdvanceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+		/*This is run 7
+		 * employeeRepository.insert(new FullTimEmployee("jack", new BigDecimal("10000")));
+		employeeRepository.insert(new PartTimeEmployee("jill", new BigDecimal("50")));
+		*/	
 		
-		studentrepository.insertStudentAndCourse(new Student("Jack"),new Course("Micro services in 100 steps"));
+		//Below line is run 6
+		//logger.info("All Employess -> {}",employeeRepository.retrieveAllEmployees());
+		
+		
+		/*// run5 Use the below two lines when the MappedSuperClass is uncommented in the Employee Pojo
+		logger.info("All PartTimeEmployess -> {}",employeeRepository.retrieveAllPartEmployees());
+		logger.info("All FullTimeEmployess -> {}",employeeRepository.retrieveAllFullTimeEmployees());*/
+		
+		//Below is run4
+		//studentrepository.insertStudentAndCourse(new Student("Jack"),new Course("Micro services in 100 steps"));
 		
 		/*
 		 *This is a run3

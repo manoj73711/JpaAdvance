@@ -28,7 +28,7 @@ public class NativeQueriesTest {
 
 	@Test
 	public void nativeQueries_basic() {
-		Query query=em.createNativeQuery("select * from course",Course.class);
+		Query query=em.createNativeQuery("select * from course where is_deleted=0",Course.class);
 		List list=query.getResultList();
 		logger.info("select c form Course c =>{}",list);
 	}
